@@ -1,0 +1,80 @@
+{% extends 'musicos/base.html' %}
+{% load staticfiles %}
+{% block custom_assets %}
+    <script>
+        {#        $(function () {#}
+        {#            sessionStorage.setItem('terminos_condiciones', 0);#}
+        {##}
+        {#            $('#acepto').on('click', function () {#}
+        {#                sessionStorage.setItem('terminos_condiciones', 1);#}
+        {#            });#}
+        {#            $('#btn-registrar').on('click', function (event) {#}
+        {#                event.preventDefault();#}
+        {#                var terminos = sessionStorage.getItem('terminos_condiciones');#}
+        {#                if (terminos == 0) {#}
+        {#                    bootbox.alert('Debe aceptar los términos y condiciones para poder registrarse');#}
+        {#                }#}
+        {#                if (terminos == 1) {#}
+        {#                    $('#form_registrar').submit();#}
+        {#                }#}
+        {#            });#}
+        {##}
+        {#        });#}
+    </script>
+{% endblock %}
+{% block container %}
+    <div class="container">
+        <div class="well mt10">
+            <h4 class="text-naranja text-center">Si eres músico y quieres pertenecer a esta increible comunidad. Date de
+                alta
+                aquí</h4>
+            <hr>
+            <form method='post' id="form_registrar" action='#'>
+                {% csrf_token %}
+                {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <div class="alert alert-error">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <div class="alert alert-error">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        {{ form.first_name }}
+                    </div>
+                    <div class="col-sm-4">
+                        {{ form.last_name }}
+                    </div>
+                    <div class="col-sm-4 hidden">
+                        {{ form.username }}
+                    </div>
+                    <div class="col-sm-4">
+                        {{ form.email }}
+                    </div>
+                </div>
+                <div class="row mt10">
+                    <div class="col-sm-4">
+                        {{ form.password1 }}
+                    </div>
+                    <div class="col-sm-4">
+                        {{ form.password2 }}
+                    </div>
+                </div>
+
+                <label>
+                    <input type="checkbox" name="acepto" id="acepto"/>
+                    <a href="#">Acepto términos y condiciones</a>
+                </label>
+                <button id="btn-registrar" class="btn btn-block bg-naranja text-blanco mt10">Registrarse</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

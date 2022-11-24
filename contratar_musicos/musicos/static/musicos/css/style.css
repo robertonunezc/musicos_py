@@ -1,0 +1,280 @@
+@import url('dropdown.css');
+@import url('utils.css');
+@import url('common.css');
+
+:root {
+    --primary-color: #add8e6;
+    --secondary-color: black;
+}
+
+body {
+    font-size: 16px;
+    font-family: "Roboto Medium", sans-serif;
+    background-color: var(--primary-color);
+}
+
+.header {
+    padding: 0.5em;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--primary-color);
+    box-shadow: 0 5px 15px black;
+    /*background-color: var(--primary-color);*/
+    /*margin-bottom: 10px;*/
+    /*position: fixed;*/
+    /*width: 100%;*/
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-header {
+    display: flex;
+}
+
+.menu-header--item {
+    padding: 1em;
+    font-size: 1em;
+}
+
+.menu-header--link {
+    color: var(--secondary-color);
+}
+
+.btn-hightlight {
+    background-color: #c83600;
+    padding: 10px;
+    color: white;
+    text-transform: uppercase;
+}
+.btn-primary {
+    background-color: #c83600;
+    padding: 3px;
+    color: white;
+    text-transform: uppercase;
+text-align: center;
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.8;
+    /*background: url('../img/guitar_web.jpg');*/
+    background: url('../img/background.jpg');
+    background-position: center;
+    background-size: cover;
+    background-origin: border-box;
+    margin-bottom: 20px;
+}
+
+.filters--title {
+    font-size: 2.5em;
+    color: white;
+    text-align: center;
+}
+
+.filters--hero {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 0.2em;
+    width: 70%;
+    flex-wrap: wrap;
+}
+
+.filters--form {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 0 30%;
+    justify-content: center;
+    align-items: center;
+}
+
+.filter--row {
+    margin: 1em;
+}
+
+.filters--form__fontsize {
+    font-size: 1em;
+}
+
+.filters--form__color {
+    color: #fff;
+}
+
+.show-btn__visibility {
+    display: none;
+}
+
+.show-btn__size {
+    font-size: 3em;
+}
+
+/*home categories*/
+.home-category {
+    display: flex;
+    width: 85%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.home-category__item {
+    flex: 0 1 5%;
+}
+
+.home-category__img {
+    width: 100%;
+    border-radius: 0.5em 0.5em 0 0;
+}
+
+.home-category__title {
+    text-align: center;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.important-bands {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.important-bands__band {
+    flex: 0 1 13%;
+}
+
+.important-bands__info {
+    padding: 1em;
+}
+
+.important-bands__footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.thumb-band__button {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.important-bands__price {
+    font-size: 1.2em;
+}
+
+/* GENERAL CMP */
+.thumb:hover {
+    box-shadow: 0.2em 0 1em #424242;
+    cursor: pointer;
+}
+
+.thumb {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: solid 0.1em #ececec;
+    border-radius: 0.5em;
+    margin: 0.5em;
+}
+
+.thumb__title {
+    font-size: 1.3em;
+}
+
+.thumb__img {
+    width: 100%;
+    border-radius: 0.5em 0.5em 0 0;
+}
+
+.thumb__info {
+    font-size: 0.8em;
+    padding: 0.5em;
+}
+
+.thumb__tags {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tag {
+    display: inline;
+    background-color: var(--secondary-color);
+    font-size: 1.2em;
+    padding: 0.2em;
+    color: white;
+    margin-right: 0.5em;
+}
+
+/*Hide checkbox*/
+input[type=checkbox] {
+    display: none;
+}
+
+/*Show menu when invisible checkbox is checked*/
+input[type=checkbox]:checked ~ .menu-header {
+    display: flex;
+}
+
+/*Musico profile*/
+
+.artist-information {
+    flex: 0 1 60%;
+
+    margin: 10px;
+    padding: 1em;
+}
+
+#images-gallery {
+    padding: 1em;
+    flex: 0 1 35%;
+
+}
+
+#principal-artist-img {
+    width: 100%;
+}
+
+/*RESPONSIVE SECTION*/
+@media screen and (min-width: 1376px) {
+
+}
+
+@media screen and (max-width: 700px) {
+    .nav {
+        flex-direction: column;
+        align-items: end;
+        width: 80%;
+    }
+
+    .filters--hero {
+        flex-direction: row;
+    }
+
+    .filters--form {
+        justify-content: space-between;
+    }
+
+    .filter--row {
+        margin: 0.5em;
+    }
+
+    .show-btn__visibility {
+        display: inline;
+    }
+
+    .menu-header {
+        flex-direction: column;
+        display: none;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+
+    .filter--row {
+        width: 100%;
+    }
+}

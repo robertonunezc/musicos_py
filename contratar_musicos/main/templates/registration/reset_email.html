@@ -1,0 +1,3 @@
+Alguien intentó recuperar su contraseña para acceder a nuestro sitio en el correo electrónico {{ email }}.
+Si fue usted siga los pasos en el enlace que le aparece a continuación, sino no realice ninguna acción, su cuenta está segura.
+{{ protocol}}://{{ domain }}{% url 'main:password_reset_confirm' uidb64=uid token=token %}

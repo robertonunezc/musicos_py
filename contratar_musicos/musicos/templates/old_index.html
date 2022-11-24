@@ -1,0 +1,156 @@
+
+
+
+    <div class="">
+        <div class="container">
+            <div class="">
+                <h1 class="text-blanco">Contratar Músicos</h1>
+                <p class="text-blanco">es una plataforma destinada a las personas que necesitan encontrar artistas.
+                    Proveemos
+                    una amplia descripción para
+                    una mejor toma de desiciones sobre cual se ajusta a las necesidades del usuario.<br> <b>Es
+                        gratis.</b></p>
+                <p class="text-blanco">De igual forma pretendemos crear un espacio donde los artistas de todos los
+                    géneros puedan
+                    dar a conocer su talento y sea fácil contactarlos.</p>
+                <button class="btn bg-naranja text-blanco"><i class="fa fa-check"></i> ¿Eres m&uacute;sico? Reg&iacute;strate
+                </button>
+            </div>
+            <div class="">
+                <form action="#" class="form-group" method="post" enctype="multipart/form-data"
+                      id="form-busqueda-home">
+                    <fieldset>
+                        <h1 class="text-blanco text-center mb15">Encuentra el artista ideal</h1>
+                        {% csrf_token %}
+                        <div class="">
+                            <div class="">
+                                <label for="name">Nombre</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">abc</div>
+                                    <input id="name" class="input" type="text" name="nombre"
+                                           placeholder="Nombre músico">
+                                </div>
+                            </div>
+                            <div class="">
+                                <label for="tipo-musico">Tipo Musico</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">abc</div>
+                                    <select class="input " name="tipo-musico">
+                                        <option value="-1">--seleccione--</option>
+                                        {% for tipos_musico in tipos_musicos %}
+                                            <option value="{{ tipos_musico.pk }}">{{ tipos_musico }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="">
+                                <label>Evento donde los necesita </label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">abc</div>
+                                    <select name="servicio" class="input">
+                                        <option value="-1">--seleccione--</option>
+                                        {% for servicio in servicios %}
+                                            <option value="{{ servicio.pk }}">{{ servicio }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="">
+                                <label>Precio Min </label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">$</div>
+                                    <input type="number" class="input" name="precio-min"
+                                           placeholder="precio mínimo">
+                                </div>
+                            </div>
+                            <div class="">
+                                <label>Precio Max </label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">$</div>
+                                    <input type="number" class="input" name="precio-max"
+                                           placeholder="precio máximo">
+                                </div>
+                            </div>
+                            <div class="">
+                                <label>Tipo Cobro </label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">abc</div>
+                                    <select name="tipo_cobro" class="input">
+                                        <option value="-1">--seleccione--</option>
+                                        {% for cobro in tipo_cobro %}
+                                            <option value="{{ cobro.pk }}">{{ cobro }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="12">
+                                <button class="btn bg-naranja text-blanco mt10">
+                                    <i class="fa fa-search" aria-hidden="true"></i> Buscar
+                                </button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="listado-musicos container">
+        <div class="">
+            <div class="12">
+                <h3 class="bold text-naranja text-center">
+                    Artistas recientes</h3>
+                <hr>
+            </div>
+            {% for musico in musicos %}
+                {% include 'musicos/item_musico.html' %}
+            {% endfor %}
+
+        </div>
+    </div>
+    <div class="container mt10">
+        <h3 class="bold text-naranja text-center">
+            Catálogo de artistas</h3>
+        <hr>
+        <div class="container-tab-categorias">
+            <ul class="nav nav-tabs" role="tablist">
+                {% for tipos_musico in tipos_musicos|slice:":10" %}
+                    <li role="presentation">
+                        <a href="#{{ tipos_musico.slug }}"
+                           data-tipo="{{ tipos_musico.slug }}"
+                           aria-controls="home" role="tab"
+                           data-toggle="tab">{{ tipos_musico }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="tab-content">
+                {% for tipo_musico in tipos_musicos %}
+                    <div role="tabpanel" class="tab-pane fade" id="{{ tipo_musico.slug }}">
+                        <div class="container-musico-tab " style="padding-top: 15px">
+                            {% for musico in tipo_musico.musicos.all|slice:":4" %}
+                                {% if musico.demo.audio != None or musico.demo.video != None %}
+                                    {% include 'musicos/item_musico.html' %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{% static 'musicos/js/index_tabs.js' %}"></script>
+    <script>
+        /*$(function () {
+            var counter = 1;
+            setInterval(function () {
+                var contenedor = $('.header-bg');
+                if (counter > 3) {
+                    counter = 1;
+                }
+                var image = "/static/musicos/img/slider_home/slider_" + counter + ".jpg";
+                counter++;
+                contenedor.css('background', 'url(' + image + ') left');
+            }, 3000, 3000)
+        })*/
+    </script>

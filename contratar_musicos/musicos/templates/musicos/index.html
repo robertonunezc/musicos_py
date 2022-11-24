@@ -1,0 +1,38 @@
+{% extends 'musicos/base.html' %}
+{% load static %}
+{% block container %}
+    
+    <h2 class="title title--align-center">Encuentra tu artista ideal facilmente</h2>
+    <form method="post" action="#" class="pure-form pure-form-stacked filters--form filters--form__fontsize">
+        {% csrf_token %}
+        <div class="filter--row">
+            <label for="name">Buscalo por nombre</label>
+            <input id="name" class="input" type="text" name="nombre"
+                   placeholder="Nombre músico">
+        </div>
+        <div class="filter--row">
+            <button class="pure-button pure-button-primary">
+                <i class="fa fa-search" aria-hidden="true"></i> Buscar
+            </button>
+        </div>
+    </form>
+    <h2 class="title title--align-center">O por el género que quieras</h2>
+
+    <section class="home-category">
+
+    {% for tipo_musico in tipos_musicos %}
+
+        <a href="" class="thumb home-category__item" title="{{ tipo_musico }}">
+            <p class="home-category__title">{{ tipo_musico }}</p>
+        </a>
+    {% endfor %}
+    </section>
+    <h2 class="title title--align-center">Artistas destacados</h2>
+
+    <section class="important-bands">
+        {% for musico in musicos %}
+        {% include 'musicos/item_musico.html' with musico=musico %}
+        {% endfor %}
+    </section>
+
+{% endblock %}

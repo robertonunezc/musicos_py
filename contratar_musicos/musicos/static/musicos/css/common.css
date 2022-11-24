@@ -1,0 +1,17 @@
+a {
+    text-decoration: none;
+    color: #000000;
+}
+.input--lg {
+    width: 100%;
+}
+.button--mtop {
+    margin-top: 1.5em;
+}
+
+.title{
+    color: var(--secondary-color);
+}
+.title--align-center{
+    text-align: center;
+}

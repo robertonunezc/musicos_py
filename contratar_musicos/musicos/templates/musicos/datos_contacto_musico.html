@@ -1,0 +1,93 @@
+{% load static %}
+<div class="modal fade" id="datos-contacto-modal{{ musico.pk }}" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Datos contacto</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    {% if musico.contacto.telefono %}
+                        <div class="col-sm-6" id="telefono-contacto">
+                            <img
+                                    src="{% static 'musicos/img/social/ph.png' %}"
+                                    alt="telefono"
+                                    class="pull-left mr5" width="30px"
+                            >
+                            {{ musico.contacto.telefono }}
+                        </div>
+                    {% endif %}
+                    {% if musico.contacto.email %}
+                        <div class="col-sm-6" id="email-contacto">
+                            <img
+                                    src="{% static 'musicos/img/social/email.png' %}"
+                                    alt="email"
+                                    class="pull-left mr5" width="30px"
+                            >
+                            <a href="mailto:{{ musico.contacto.email }}">{{ musico.contacto.email }}</a>
+                        </div>
+                    {% endif %}
+                    {% if musico.contacto.web %}
+                        <div class="col-sm-6" id="web-web">
+                            <img
+                                    src="{% static 'musicos/img/social/web.png' %}"
+                                    alt="web"
+                                    class="pull-left mr5" width="30px"
+                            >
+                            <a href="{{ musico.contacto.web }}" id="link-web">{{ musico.contacto.web }}</a>
+                        </div>
+                    {% endif %}
+                    {% if musico.contacto.facebook %}
+                        <div class="col-sm-6" id="facebook-contacto">
+                            <img
+                                    src="{% static 'musicos/img/social/fb.png' %}"
+                                    alt="facebook"
+                                    class="pull-left mr5" width="30px"
+                            >
+                            <a href="{{ musico.contacto.facebook }}"
+                               id="link-facebook">{{ musico.contacto.facebook }}</a>
+                        </div>
+                    {% endif %}
+                    {% if musico.contacto.twitter %}
+                        <div class="col-sm-6" id="twitter-contacto">
+                            <img
+                                    src="{% static 'musicos/img/social/tw.png' %}"
+                                    alt="tw"
+                                    class="pull-left mr5" width="30px"
+                            >
+                            <a href="{{ musico.contacto.twitter }}"
+                               id="link-twitter">{{ musico.contacto.twitter }}</a>
+                        </div>
+                    {% endif %}
+                    {% if musico.contacto.instagram %}
+                        <div class="col-sm-6" id="twitter-instagram">
+                            <img
+                                    src="{% static 'musicos/img/social/inst.png' %}"
+                                    alt="inst"
+                                    class="pull-left mr5" width="30px"
+                            >
+                            <a href="{{ musico.contacto.instagram }}"
+                               id="link-instagram">{{ musico.contacto.instagram }}</a>
+                        </div>
+                    {% endif %}
+                    {% if musico.contacto.youtube %}
+                        <div class="col-sm-6" id="twitter-youtube">
+                            <img
+                                    src="{% static 'musicos/img/social/yt.png' %}"
+                                    alt="yt"
+                                    class="pull-left mr5" width="30px"
+                            >
+                            <a href="{{ musico.contacto.youtube }}"
+                               id="link-youtube">{{ musico.contacto.youtube }}</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,156 @@
+{% extends 'musicos/base.html' %}
+{% load static %}
+{% block javascripts %}
+{% endblock %}
+{% block container %}
+    <div class="container mt10">
+        <div class="d-flex">
+            <div id="images-gallery">
+                <div class="thumbnail">
+                    <img id="principal-artist-img" src="{{ musico.imagen_principal.url }}" alt="{{ musico.nombre }}">
+                </div>
+            </div>
+            <aside class="artist-information bg-blanco">
+                <h1 class="text-naranja">{{ musico }}</h1>
+                <p>{{ musico.descripcion }}</p>
+                <hr>
+                <div class="col-sm-12">
+                    <table class="table table-striped">
+                        <tr>
+                            <td><b>Valoración:</b></td>
+                            <td>
+                                {% if musico.valoracion >= 0 and musico.valoracion <= 1 %}
+                                    <i class="fa fa-star mr5"></i>
+                                {% endif %}
+                                {% if musico.valoracion > 1 and musico.valoracion <= 2 %}
+                                    <i class="fa fa-star mr5"></i>
+                                    <i class="fi-star mr5"></i>
+                                {% endif %}
+                                {% if musico.valoracion > 2 and musico.valoracion <= 3 %}
+                                    <i class="fi-star mr5"></i>
+                                    <i class="fi-star mr5"></i>
+                                    <i class="fi-star mr5"></i>
+                                {% endif %}
+                                {% if musico.valoracion > 3 and musico.valoracion <= 4 %}
+                                    <i class="fi-star mr5"></i>
+                                    <i class="fi-star mr5"></i>
+                                    <i class="fi-star mr5"></i>
+                                    <i class="fi-star mr5"></i>
+                                {% endif %}
+                                {% if musico.valoracion > 4 and musico.valoracion <= 5 %}
+                                    <i class="fi-star mr5"></i>
+                                    <i class="fi-star mr5"></i>
+                                    <i class="fi-star mr5"></i>
+                                    <i class="fi-star mr5"></i>
+                                    <i class="fi-star mr5"></i>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Repertorio:</b></td>
+                            <td>
+                                {% for estilo in musico.estilo_musica.all %}
+                                    <span>
+                                <i class="fa fa-check-square mr5"></i>
+                                {{ estilo }}
+                            </span>
+                                {% endfor %}
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Categoría:</b></td>
+                            <td>
+                                <span>
+                                <i class="fi-check mr5"></i>
+                                {{ musico.tipo_musico }}
+                            </span>
+
+                            </td>
+                        </tr>
+                        {% if musico.precio != None %}
+                            <tr>
+                                <td><b>Precio aprox:</b></td>
+                                <td>
+                                <span>
+                                <p>Precio min: ${{ musico.precio.valor_minimo }} / {{ musico.precio.tipo_cobro }}</p>
+                                <p>Precio max: ${{ musico.precio.valor_maximo }} / {{ musico.precio.tipo_cobro }}</p>
+                            </span>
+
+                                </td>
+                            </tr>
+                        {% endif %}
+                        <tr>
+                            <td><b>Eventos que atienden:</b></td>
+                            <td>
+                                {% for servicio in musico.servicio_musica.all %}
+                                    <span>
+                                <i class="fa fa-check-square mr5"></i>
+                                {{ servicio }}
+                            </span>
+                                {% endfor %}
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+                <hr>
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <h4>Información relevante</h4>
+                        <table class="table table-striped">
+                            {% for info in musico.info_adicional.all %}
+                                <tr>
+                                    <td>
+                                        <i class="fa fa-check mr5"></i><b>{{ info.pregunta }}</b>
+                                    </td>
+                                    <td>{{ info.respuesta }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+
+                </div>
+                <div>
+                    {% if musico.demo.audio %}
+                        <audio controls>
+                            <source src="{{ musico.demo.audio.url }}" type="audio/mpeg">
+                            Su navegador no soporta los audios. Por favor cambie a Firefox o Chrome
+                        </audio>
+                    {% endif %}
+                </div>
+                <hr>
+                <div>
+                    {% if musico.demo.video%}
+                        <div class="modal-body">
+                            <iframe width="560" height="315" src="{{ musico.demo.video }}"
+                                    allowfullscreen></iframe>
+                        </div>
+                    {% endif %}
+                </div>
+            </aside>
+        </div>
+        <div class="row">
+            <hr>
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#info"
+                       aria-controls="home"
+                       role="tab"
+                       data-toggle="tab">
+                        <i class="fa fa-list mr5"></i>Información
+                        detallada</a>
+                </li>
+                <li role="presentation">
+                    <a href="#similares" aria-controls="settings"
+                       role="tab" class="text-naranja"
+                       data-toggle="tab">Similares</a>
+                </li>
+            </ul>
+            <!-- Tab panes -->
+
+
+        </div>
+    </div>
+{% endblock %}

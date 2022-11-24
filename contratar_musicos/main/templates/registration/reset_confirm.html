@@ -1,0 +1,49 @@
+{% extends 'musicos/base.html' %}
+{% load staticfiles %}
+{% block container %}
+
+          {% if validlink %} <!-- If the link is valid, display a confirmation page, else display an error message -->
+          <form role="form" action="." method="post" class="reset-password tac">
+           {% csrf_token %} <!-- CSRF token is rendered by Django in forms to avoid CSRF attacks -->
+           <h3 class="morado">Crear nueva contraseña</h3>
+           <!-- If there are non-field errors in the form,
+                iterate over them one by one and display them.
+            -->
+           {% if form.non_field_errors %}
+            <p class="error">
+              {% for error in form.non_field_errors %}
+		            {{ error }}
+		          {% endfor %}
+            </p>
+           {% endif %}
+           <!-- Iterate over the fields in a form and render them  -->
+           {% for field in form %}
+            <div class="form-group">
+              <!-- Render the field label tag -->
+		          {{ field.label_tag }}
+              <!-- If the field is required, display a * next to the field label -->
+              {% if field.field.required %}
+              *
+              {% endif %}
+              <br/>
+              <!-- Render the input field -->
+		          {{ field }}
+		        <!-- Iterate over the field's errors, if any and display
+                 them one by one in a error alert
+            -->
+		        {% if field.errors %}
+		          <p class="error">
+		          {% for error in field.errors %}
+		            {{ error }}
+		          {% endfor %}
+		          </p>
+		        {% endif %}
+            </div>
+          {% endfor %}
+    		<button type="submit" class="btn-morado"> Enviar </button>
+   	  </form>
+       {% else %} <!-- Since the confirmatino link is invalid, display an error message -->
+       Invalid password reset link
+       {% endif %}
+
+{% endblock %}

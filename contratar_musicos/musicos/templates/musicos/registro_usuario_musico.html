@@ -1,0 +1,46 @@
+{% extends 'musicos/base.html' %}
+{% block container %}
+    <div class="container mt10">
+        <div class="row well">
+            <h4 class="text-naranja text-center">Si eres músico y quieres pertenecer a esta increible comunidad. Date de
+                alta
+                aquí</h4>
+            <hr>
+            <form id="registro-musico-form" action="#" method="POST" enctype="multipart/form-data" class="form-group">
+                <div class="row">
+                    {% csrf_token %}
+                    <div class="col-sm-6">
+                        <label>Correo Electrónico:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">@</div>
+                            {{ form.email }}
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label>Contraseña:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">***</div>
+                            {{ form.password }}
+                        </div>
+                    </div>
+                    <div class="d-none">
+                        {{ form.username }}
+                    </div>
+                    <div class="col-sm-12 mt10">
+                        <button class="btn bg-naranja text-blanco">REGISTRARSE</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        let password = document.querySelector('#id_password').type = 'password'
+        let email = document.querySelector('#id_email')
+        let username = document.querySelector('#id_username')
+        email.addEventListener('change', function (event) {
+            username.value = event.target.value
+        } )
+    </script>
+{% endblock %}

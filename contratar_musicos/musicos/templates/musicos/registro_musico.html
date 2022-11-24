@@ -1,0 +1,68 @@
+{% extends 'musicos/base.html' %}
+{% block container %}
+    <div class="container mt10">
+        <div class="row well">
+            <h4 class="text-naranja text-center">Si eres músico y quieres pertenecer a esta increible comunidad. Date de
+                alta
+                aquí</h4>
+            <hr>
+            <form id="registro-musico-form" action="{% url 'musicos:completar_registro_musico' %}" method="POST" enctype="multipart/form-data" class="form-group">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <label>Nombre:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">abc</div>
+                            {{ form.nombre }}
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label>Descripción general</label>
+                        {{ form.descripcion }}
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="tipo_musico">Tipo de músico</label>
+                        {{ form.tipo_musico }}
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label for="tipo_musico">Estilos de música que manejan</label>
+                        {{ form.estilo_musica }}
+                        <p class="mark fs12">Puede seleccionar varios apretando la tecla Ctrl y sin soltarla clic en el
+                            estilo que desee</p>
+                    </div>
+
+                </div>
+                <h4 class="text-center text-naranja">Datos de contacto</h4>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label>Telefono</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-phone"></i></div>
+                            {{ form.contacto }}
+                        </div>
+                    </div>
+
+                </div>
+
+                <h4 class="text-center text-naranja">Información musical</h4>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>Eventos en que pude participar</label>
+                        {{ form.servicio_musica }}
+                    </div>
+                     <div class="col-sm-6">
+                        <label>Estado</label>
+                        {{ form.localizacion.estado }}
+                    </div>
+                </div>
+                {% csrf_token %}
+                <button class="btn btn-block bg-naranja text-blanco mt10">Guardar</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

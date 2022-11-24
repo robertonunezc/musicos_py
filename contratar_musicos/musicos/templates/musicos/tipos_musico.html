@@ -1,0 +1,17 @@
+{% extends 'musicos/base.html' %}
+{% load staticfiles %}
+{% block container %}
+    <div class="container mt10">
+        <h4 class="ml80  text-naranja">Est&aacute;s viendo <b>{{ tipo_musico }}</b></h4>
+        <hr>
+        <section id="container-categorias">
+            {% if musicos|length > 0 %}
+                {% for musico in musicos %}
+                    {% include 'musicos/item_musico.html' with musico=musico %}
+                {% endfor %}
+            {% else %}
+                <h4 class="ml80 alert alert-danger">Upss :( Lo sentimos pero no tenemos m&uacute;sicos en esta categor&iacute;a</h4>
+            {% endif %}
+        </section>
+    </div>
+{% endblock %}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% load static %}
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Contratar músicos </title>
+    {#    TODO HACER ESTOS METAS#}
+    <meta name="keywords" content=""/>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--Vendors-->
+    <link rel="stylesheet" href="{% static 'musicos/css/font-awesome/css/font-awesome.css' %}">
+    <link rel="stylesheet" href="{% static 'musicos/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'musicos/css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'musicos/css/utils.css' %}">
+
+    {% block stylesheets %}
+
+    {% endblock %}
+</head>
+<body>
+<header class="header">
+    <picture>
+        <img src="{% static 'musicos/img/logo.png' %}" title="Logo" width="100px">
+    </picture>
+    <nav class="nav">
+        <label for="show-menu" class="show-menu show-btn__visibility show-btn__size">
+            <i class="fa fa-bars"></i>
+        </label>
+        <input type="checkbox" id="show-menu" role="button">
+        <ul class="menu-header">
+            <li class="menu-header--item">
+                <a class="menu-header--link" href="{% url 'musicos:index' %}">Inicio</a>
+            </li>
+
+            {% comment %} <li class="menu-header--item dropdown">
+                <a href="" class="dropbtn menu-header--link">Musicos</a>
+                <ul class="dropdown-content">
+                    <li><a href="">asdasdsa</a></li>
+                    {% for tipo in tipos_musico %}
+                        <li>
+                            <a href="{% url 'musicos:tipo_musico' slug_tipo_musico=tipo.slug %}">{{ tipo }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li> {% endcomment %}
+            <li class="menu-header--item"><a class="menu-header--link btn-hightlight"
+                                             href="{% url 'musicos:registro_usuario_musico' %}">Eres Músico ÚNETENOS</a></li>
+            {% comment %} <li class="menu-header--item"><a class="menu-header--link" href="{% url 'login' %}">Entrar al perfil</a> {% endcomment %}
+            </li>
+            <li class="menu-header--item"><a class="menu-header--link" href="{% url 'main:contacto' %}">Contacto</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+{% block container %}
+
+{% endblock %}
+<footer class="row">
+    <p class="text-center">Todos los derechos reservados. 2017</p>
+</footer>
+
+{% block javascripts %}{% endblock %}
+</body>
+</html>

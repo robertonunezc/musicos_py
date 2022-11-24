@@ -1,0 +1,17 @@
+{% extends 'musicos/base.html' %}
+{% load static %}
+{% block container %}
+    <div class="container">
+        <h4 class="ml80">Resultados de b&uacute;squeda</h4>
+        <hr>
+        <section class="important-bands">
+            {% if resultado_busqueda|length > 0 %}
+                {% for musico in resultado_busqueda %}
+                    {% include 'musicos/item_musico.html' with musico=musico %}
+                {% endfor %}
+            {% else %}
+                <h4 class="ml80">Upss :( Lo sentimos pero no tenemos m&uacute;sicos con esas caracter&iacute;sticas</h4>
+            {% endif %}
+        </section>
+    </div>
+{% endblock %}

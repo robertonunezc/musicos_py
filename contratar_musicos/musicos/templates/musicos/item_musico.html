@@ -1,0 +1,22 @@
+{% load static %}
+
+<aside class="thumb important-bands__band">
+    {% comment %} <img class="thumb__img" src="{% static 'musicos/img/music_genres/dj.jpg' %}" alt="DJ"> {% endcomment %}
+    <div class="thumb__info">
+        <p class="thumb__title">{{ musico.nombre }}</p>
+        <div class="thumb__tags">
+            {% for estilo in musico.estilo_musica.all %}
+                <p class="tag">{{ estilo }}</p>
+            {% endfor %}
+        </div>
+        <footer class="important-bands__footer">
+            <div class="important-bands__price">
+               Costo: {{ musico.precio }}
+            </div>
+            <a href="{% url 'musicos:perfil_musico' slug_musico=musico.slug %}" class="btn-primary">Contactarlo</a>
+
+        </footer>
+
+    </div>
+</aside>
+{#{% include 'musicos/datos_contacto_musico.html' %}#}
