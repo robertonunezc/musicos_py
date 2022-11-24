@@ -1,22 +1,22 @@
 {% extends 'musicos/base.html' %}
 {% load static %}
 {% block container %}
-    
-    <h2 class="title title--align-center">Encuentra tu artista ideal facilmente</h2>
-    <form method="post" action="#" class="pure-form pure-form-stacked filters--form filters--form__fontsize">
+<a 
+    class="text-center btn-hightlight box-shadow hover round-border" 
+    ref="{% url 'musicos:registro_usuario_musico' %}">Eres Músico ÚNETENOS</a>
+<h2 class="title title--align-center">Encuentra tu artista ideal facilmente</h2>
+    <form method="post" action="#" class="text-center filters--form__fontsize">
         {% csrf_token %}
-        <div class="filter--row">
-            <label for="name">Buscalo por nombre</label>
+        <label for="name">Buscalo por nombre</label>
+        <div class="filter--row d-flex jcont-center">
             <input id="name" class="input" type="text" name="nombre"
                    placeholder="Nombre músico">
-        </div>
-        <div class="filter--row">
-            <button class="pure-button pure-button-primary">
-                <i class="fa fa-search" aria-hidden="true"></i> Buscar
-            </button>
+                   <button class="pure-button pure-button-primary">
+                    <i class="fa fa-search" aria-hidden="true"></i> Buscar
+                </button>
         </div>
     </form>
-    <h2 class="title title--align-center">O por el género que quieras</h2>
+    <h3 class="title title--align-center">Por el género</h3>
 
     <section class="home-category">
 
@@ -27,7 +27,7 @@
         </a>
     {% endfor %}
     </section>
-    <h2 class="title title--align-center">Artistas destacados</h2>
+    <h3 class="title title--align-center">Artistas destacados</h3>
 
     <section class="important-bands">
         {% for musico in musicos %}

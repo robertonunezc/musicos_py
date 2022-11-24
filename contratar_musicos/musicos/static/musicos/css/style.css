@@ -117,8 +117,8 @@ text-align: center;
 /*home categories*/
 .home-category {
     display: flex;
-    width: 85%;
-    justify-content: flex-start;
+    width: 98%;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
@@ -140,10 +140,11 @@ text-align: center;
 .important-bands {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .important-bands__band {
-    flex: 0 1 13%;
+    flex: 1 1 40%;
 }
 
 .important-bands__info {
@@ -244,9 +245,10 @@ input[type=checkbox]:checked ~ .menu-header {
 
 @media screen and (max-width: 700px) {
     .nav {
-        flex-direction: column;
+       /* flex-direction: column;
         align-items: end;
-        width: 80%;
+        width: 80%;*/
+        display: none;
     }
 
     .filters--hero {

@@ -30,9 +30,9 @@
 </head>
 <body>
 <header class="header">
-    <picture>
-        <img src="{% static 'musicos/img/logo.png' %}" title="Logo" width="100px">
-    </picture>
+    <h3>
+       Contratar Músicos 
+    </h3>
     <nav class="nav">
         <label for="show-menu" class="show-menu show-btn__visibility show-btn__size">
             <i class="fa fa-bars"></i>
@@ -63,9 +63,11 @@
         </ul>
     </nav>
 </header>
+<main class="mt10 d-flex f-column pd10">
 {% block container %}
-
 {% endblock %}
+</main>
+
 <footer class="row">
     <p class="text-center">Todos los derechos reservados. 2017</p>
 </footer>
